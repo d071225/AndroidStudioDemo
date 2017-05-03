@@ -5,13 +5,36 @@
       <GradleProjectSettings>
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleHome" value="D:/AS/gradle-3.5" />
         <option name="gradleJvm" value="1.8" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/adapterviewflipperdemo" />
+            <option value="$PROJECT_DIR$/androidfengkuangdemo" />
+            <option value="$PROJECT_DIR$/androidfkjydemo" />
+            <option value="$PROJECT_DIR$/androidjdxmdemo" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/assetdemo" />
+            <option value="$PROJECT_DIR$/configchangesdemo" />
+            <option value="$PROJECT_DIR$/daynighttheme" />
+            <option value="$PROJECT_DIR$/filemanager" />
+            <option value="$PROJECT_DIR$/frescodemo" />
+            <option value="$PROJECT_DIR$/gpsmapdemo" />
+            <option value="$PROJECT_DIR$/imagerloaderdemo" />
+            <option value="$PROJECT_DIR$/library" />
+            <option value="$PROJECT_DIR$/loadimagerdemo" />
+            <option value="$PROJECT_DIR$/myimageloader" />
+            <option value="$PROJECT_DIR$/progressbardemo" />
+            <option value="$PROJECT_DIR$/sectorview" />
+            <option value="$PROJECT_DIR$/serversocketdemo" />
+            <option value="$PROJECT_DIR$/viewpositiondemo" />
+            <option value="$PROJECT_DIR$/webviewprogressdemo" />
+            <option value="$PROJECT_DIR$/windowmanagerdemo" />
+            <option value="$PROJECT_DIR$/xutilsfz" />
           </set>
         </option>
+        <option name="resolveModulePerSourceSet" value="false" />
       </GradleProjectSettings>
     </option>
   </component>

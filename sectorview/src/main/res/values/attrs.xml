@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="Sector">
+        <attr name="background_color" format="color"/>
+        <attr name="radius" format="dimension"/>
+    </declare-styleable>
+    <declare-styleable name="ProgressView">
+        <attr name="progress_width" format="dimension"></attr>
+        <attr name="progress_divide" format="dimension"></attr>
+    </declare-styleable>
+</resources>

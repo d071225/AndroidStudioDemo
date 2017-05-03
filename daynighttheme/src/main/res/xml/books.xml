@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<books >
+    <book price="120" 出版日期="2015年3月">西游记</book>
+    <book price="110" 出版日期="2015年8月">红楼梦</book>
+    <book price="106" 出版日期="2016年1月">三国演义</book>
+</books>

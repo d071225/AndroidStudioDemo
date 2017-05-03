@@ -3,7 +3,28 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AndroidStudioDemo.iml" filepath="$PROJECT_DIR$/AndroidStudioDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/adapterviewflipperdemo/adapterviewflipperdemo.iml" filepath="$PROJECT_DIR$/adapterviewflipperdemo/adapterviewflipperdemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/androidfengkuangdemo/androidfengkuangdemo.iml" filepath="$PROJECT_DIR$/androidfengkuangdemo/androidfengkuangdemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/androidfkjydemo/androidfkjydemo.iml" filepath="$PROJECT_DIR$/androidfkjydemo/androidfkjydemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/androidjdxmdemo/androidjdxmdemo.iml" filepath="$PROJECT_DIR$/androidjdxmdemo/androidjdxmdemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/assetdemo/assetdemo.iml" filepath="$PROJECT_DIR$/assetdemo/assetdemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/configchangesdemo/configchangesdemo.iml" filepath="$PROJECT_DIR$/configchangesdemo/configchangesdemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/daynighttheme/daynighttheme.iml" filepath="$PROJECT_DIR$/daynighttheme/daynighttheme.iml" />
+      <module fileurl="file://$PROJECT_DIR$/filemanager/filemanager.iml" filepath="$PROJECT_DIR$/filemanager/filemanager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/frescodemo/frescodemo.iml" filepath="$PROJECT_DIR$/frescodemo/frescodemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gpsmapdemo/gpsmapdemo.iml" filepath="$PROJECT_DIR$/gpsmapdemo/gpsmapdemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/imagerloaderdemo/imagerloaderdemo.iml" filepath="$PROJECT_DIR$/imagerloaderdemo/imagerloaderdemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loadimagerdemo/loadimagerdemo.iml" filepath="$PROJECT_DIR$/loadimagerdemo/loadimagerdemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/myimageloader/myimageloader.iml" filepath="$PROJECT_DIR$/myimageloader/myimageloader.iml" />
+      <module fileurl="file://$PROJECT_DIR$/progressbardemo/progressbardemo.iml" filepath="$PROJECT_DIR$/progressbardemo/progressbardemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sectorview/sectorview.iml" filepath="$PROJECT_DIR$/sectorview/sectorview.iml" />
+      <module fileurl="file://$PROJECT_DIR$/serversocketdemo/serversocketdemo.iml" filepath="$PROJECT_DIR$/serversocketdemo/serversocketdemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/viewpositiondemo/viewpositiondemo.iml" filepath="$PROJECT_DIR$/viewpositiondemo/viewpositiondemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/webviewprogressdemo/webviewprogressdemo.iml" filepath="$PROJECT_DIR$/webviewprogressdemo/webviewprogressdemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/windowmanagerdemo/windowmanagerdemo.iml" filepath="$PROJECT_DIR$/windowmanagerdemo/windowmanagerdemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xutilsfz/xutilsfz.iml" filepath="$PROJECT_DIR$/xutilsfz/xutilsfz.iml" />
     </modules>
   </component>
 </project>

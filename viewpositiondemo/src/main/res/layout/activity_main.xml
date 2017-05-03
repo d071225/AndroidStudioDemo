@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.viewpositiondemo.MainActivity">
+
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="200px"
+       android:id="@+id/rl1"></RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="2000px"
+        android:id="@+id/rl2">
+        <Button
+            android:layout_width="250px"
+            android:layout_height="100px"
+            android:layout_marginLeft="30px"
+            android:layout_marginTop="30px"
+            android:text="ceshi"
+            android:id="@+id/btn"/>
+    </RelativeLayout>
+</RelativeLayout>
