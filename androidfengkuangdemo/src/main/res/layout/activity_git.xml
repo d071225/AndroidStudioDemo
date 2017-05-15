@@ -21,9 +21,5 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="分支8"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="主支3"/>
+        android:text="分支11"/>
 </LinearLayout>
