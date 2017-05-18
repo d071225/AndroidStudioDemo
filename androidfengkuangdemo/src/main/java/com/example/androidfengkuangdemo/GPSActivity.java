@@ -41,6 +41,8 @@ public class GPSActivity extends Activity {
         List<String> providers = lm.getProviders(criteria,false);
         Log.e("123","providers.size():"+providers.size());
         ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,providers);
+        ArrayAdapter<String> adapter1=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,providers);
+        Log.e("123","equels"+adapter.equals(adapter1)+"=="+(adapter==adapter1));
         lv_gps.setAdapter(adapter);
         //获取定位信息
         Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
