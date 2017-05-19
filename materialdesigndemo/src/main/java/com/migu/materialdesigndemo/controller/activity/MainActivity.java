@@ -1,7 +1,5 @@
 package com.migu.materialdesigndemo.controller.activity;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -22,8 +20,8 @@ import com.migu.materialdesigndemo.controller.fragment.SettingFragment;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private NavigationView navigationView;
-    private FragmentManager fragmentManager;
-    private FragmentTransaction ft;
+    private android.support.v4.app.FragmentManager fragmentManager;
+    private android.support.v4.app.FragmentTransaction ft;
     private HomeFragment homeFragment;
     private ListFragment listFragment;
     private SettingFragment settingFragment;
@@ -36,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        fragmentManager = getFragmentManager();
+        fragmentManager = getSupportFragmentManager();
         selectFragment(1);
         initFindViewById();
         initListener();
@@ -111,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 ft.show(settingFragment);
                 break;
         }
-        ft.commitAllowingStateLoss();
+        ft.commit();
     }
     public void hideFragment(){
         if (homeFragment!=null){
