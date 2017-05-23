@@ -122,4 +122,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             ft.hide(settingFragment);
         }
     }
+    public void openNavigationView(){
+        drawerLayout.openDrawer(Gravity.LEFT);
+    }
 }

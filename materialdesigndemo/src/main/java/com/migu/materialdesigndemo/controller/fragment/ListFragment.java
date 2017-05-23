@@ -11,11 +11,13 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.migu.materialdesigndemo.R;
 import com.migu.materialdesigndemo.adapter.TabAdapter;
+import com.migu.materialdesigndemo.controller.activity.MainActivity;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -25,7 +27,7 @@ import java.util.List;
  * Created by DY on 2017/5/18.
  */
 
-public class ListFragment extends Fragment {
+public class ListFragment extends Fragment implements View.OnClickListener {
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -34,6 +36,7 @@ public class ListFragment extends Fragment {
             "Tab 10","Tab 11","Tab 12"};
     private List<Fragment> fragments;
     private TabAdapter adapter;
+    private Button opennv;
 
     @Nullable
     @Override
@@ -99,6 +102,7 @@ public class ListFragment extends Fragment {
 
             }
         });
+        opennv.setOnClickListener(this);
     }
 
     private void initTableLayout() {
@@ -120,6 +124,7 @@ public class ListFragment extends Fragment {
     private void initFindViewById() {
         tabLayout = (TabLayout) view.findViewById(R.id.tl);
         viewPager = (ViewPager) view.findViewById(R.id.vp);
+        opennv = (Button) view.findViewById(R.id.btn_opennv);
     }
 
     public static void setIndicator(Context context, TabLayout tabs, int leftDip, int rightDip) {
@@ -179,5 +184,11 @@ public class ListFragment extends Fragment {
         DisplayMetrics metric = new DisplayMetrics();
         ((Activity) context).getWindowManager().getDefaultDisplay().getMetrics(metric);
         return metric;
+    }
+
+    @Override
+    public void onClick(View v) {
+        MainActivity mainActivity= (MainActivity) getActivity();
+        mainActivity.openNavigationView();
     }
 }
