@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.migu.materialdesigndemo.R;
 
@@ -43,7 +42,7 @@ public class TabThreeFragment extends BaseFragment {
         if(!isPrepared || !isVisible) {
             return;
         }else{
-            Toast.makeText(getActivity(),"TabThreeFragment 3请求数据",0).show();
+//            Toast.makeText(getContext(),"TabThreeFragment 3请求数据",0).show();
             Log.e("TabThreeFragment","===请求数据===");
             isPrepared =false;
         }
