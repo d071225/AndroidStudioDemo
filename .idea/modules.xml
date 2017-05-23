@@ -15,8 +15,10 @@
       <module fileurl="file://$PROJECT_DIR$/frescodemo/frescodemo.iml" filepath="$PROJECT_DIR$/frescodemo/frescodemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/gpsmapdemo/gpsmapdemo.iml" filepath="$PROJECT_DIR$/gpsmapdemo/gpsmapdemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/imagerloaderdemo/imagerloaderdemo.iml" filepath="$PROJECT_DIR$/imagerloaderdemo/imagerloaderdemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/interfacedemo/interfacedemo.iml" filepath="$PROJECT_DIR$/interfacedemo/interfacedemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
       <module fileurl="file://$PROJECT_DIR$/loadimagerdemo/loadimagerdemo.iml" filepath="$PROJECT_DIR$/loadimagerdemo/loadimagerdemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mvcdemo/mvcdemo.iml" filepath="$PROJECT_DIR$/mvcdemo/mvcdemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/myimageloader/myimageloader.iml" filepath="$PROJECT_DIR$/myimageloader/myimageloader.iml" />
       <module fileurl="file://$PROJECT_DIR$/progressbardemo/progressbardemo.iml" filepath="$PROJECT_DIR$/progressbardemo/progressbardemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/sectorview/sectorview.iml" filepath="$PROJECT_DIR$/sectorview/sectorview.iml" />
