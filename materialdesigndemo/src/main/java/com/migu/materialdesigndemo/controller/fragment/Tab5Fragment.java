@@ -3,38 +3,92 @@ package com.migu.materialdesigndemo.controller.fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import com.migu.materialdesigndemo.R;
+import com.migu.materialdesigndemo.adapter.ItemRecycleViewAdapter;
+import com.migu.materialdesigndemo.view.itemdecoration.SimpleDividerItemDecoration;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by DY on 2017/5/18.
  */
 
-public class Tab5Fragment extends Fragment {
+public class Tab5Fragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
     /**
      * 预加载标志，默认值为false，设置为true，表示已经预加载完成，可以加载数据
      */
-    private boolean isPrepared=true;
+    private boolean isPrepared=false;
     private View view;
+    private RecyclerView recyclerView;
+    private SwipeRefreshLayout swipeRefreshLayout;
+    private List<String> datas;
+    private ItemRecycleViewAdapter adapter;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         Log.e("Tab5Fragment","===onCreateView===");
-            view = View.inflate(getActivity(), R.layout.fragment_home, null);
-            TextView tv = (TextView) view.findViewById(R.id.tv_content);
-            tv.setText("Tab5Fragment");
-//        isPrepared = true;
-//            setlazyLoad();
+        if (view==null) {
+            view = View.inflate(getActivity(), R.layout.fragment_tab5, null);
+//            TextView tv = (TextView) view.findViewById(R.id.tv_content);
+//            tv.setText("Tab5Fragment");
+            isPrepared = true;
+            initData();
+            setlazyLoad();
+        }
         return view;
     }
-    
+
+    private void initData() {
+        initFindViewById();
+        initListener();
+    }
+
+    private void initListener() {
+        swipeRefreshLayout.setOnRefreshListener(this);
+    }
+
+    private void initFindViewById() {
+        recyclerView = (RecyclerView) view.findViewById(R.id.rv);
+        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.srl);
+    }
+
+    @Override
+    protected void setlazyLoad() {
+        super.setlazyLoad();
+        if(!isPrepared || !isVisible) {
+            return;
+        }else{
+            Toast.makeText(getContext(),"Tab5Fragment请求数据",0).show();
+            Log.e("TabThreeFragment","===请求数据===");
+            initRecycleView();
+            isPrepared =false;
+        }
+    }
+
+    private void initRecycleView() {
+        datas = new ArrayList<>();
+        for (int i = 0; i <50 ; i++) {
+            datas.add("我是第"+i+"个item");
+        }
+        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getActivity());
+        recyclerView.setLayoutManager(linearLayoutManager);
+        adapter = new ItemRecycleViewAdapter(datas,getActivity());
+        recyclerView.addItemDecoration(new SimpleDividerItemDecoration(getActivity(),1));
+        recyclerView.setAdapter(adapter);
+    }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,14 +141,21 @@ public class Tab5Fragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         Log.e("Tab5Fragment","===onDestroyView===");
-//        if (null != view) {
-//            ((ViewGroup) view.getParent()).removeView(view);
-//        }
+        if (null != view) {
+            ((ViewGroup) view.getParent()).removeView(view);
+        }
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
         Log.e("Tab5Fragment","===onDetach===");
+    }
+
+    @Override
+    public void onRefresh() {
+        datas.add(0,"下拉刷新的数据");
+        swipeRefreshLayout.setRefreshing(false);
+        adapter.notifyDataSetChanged();
     }
 }

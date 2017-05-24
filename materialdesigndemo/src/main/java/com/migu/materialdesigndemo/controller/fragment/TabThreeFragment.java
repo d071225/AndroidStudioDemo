@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.migu.materialdesigndemo.R;
 
@@ -19,7 +20,7 @@ public class TabThreeFragment extends BaseFragment {
     /**
      * 预加载标志，默认值为false，设置为true，表示已经预加载完成，可以加载数据
      */
-    private boolean isPrepared=true;
+    private boolean isPrepared=false;
     private View view;
 
     @Nullable
@@ -30,7 +31,7 @@ public class TabThreeFragment extends BaseFragment {
             view = View.inflate(getActivity(), R.layout.fragment_home, null);
             TextView tv = (TextView) view.findViewById(R.id.tv_content);
             tv.setText("TabThreeFragment");
-//        isPrepared = true;
+            isPrepared = true;
             setlazyLoad();
         }
         return view;
@@ -42,7 +43,7 @@ public class TabThreeFragment extends BaseFragment {
         if(!isPrepared || !isVisible) {
             return;
         }else{
-//            Toast.makeText(getContext(),"TabThreeFragment 3请求数据",0).show();
+            Toast.makeText(getContext(),"TabThreeFragment 3请求数据",0).show();
             Log.e("TabThreeFragment","===请求数据===");
             isPrepared =false;
         }
