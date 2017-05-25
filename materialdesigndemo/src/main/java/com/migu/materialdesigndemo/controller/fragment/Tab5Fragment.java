@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -15,6 +14,7 @@ import android.widget.Toast;
 
 import com.migu.materialdesigndemo.R;
 import com.migu.materialdesigndemo.adapter.ItemRecycleViewAdapter;
+import com.migu.materialdesigndemo.view.EndlessRecyclerOnScrollListener;
 import com.migu.materialdesigndemo.view.itemdecoration.SimpleDividerItemDecoration;
 
 import java.util.ArrayList;
@@ -34,6 +34,8 @@ public class Tab5Fragment extends BaseFragment implements SwipeRefreshLayout.OnR
     private SwipeRefreshLayout swipeRefreshLayout;
     private List<String> datas;
     private ItemRecycleViewAdapter adapter;
+    private LinearLayoutManager linearLayoutManager;
+    private int count=0;
 
     @Nullable
     @Override
@@ -57,6 +59,7 @@ public class Tab5Fragment extends BaseFragment implements SwipeRefreshLayout.OnR
 
     private void initListener() {
         swipeRefreshLayout.setOnRefreshListener(this);
+
     }
 
     private void initFindViewById() {
@@ -79,14 +82,41 @@ public class Tab5Fragment extends BaseFragment implements SwipeRefreshLayout.OnR
 
     private void initRecycleView() {
         datas = new ArrayList<>();
-        for (int i = 0; i <50 ; i++) {
+        for (int i = 0; i <5 ; i++) {
             datas.add("我是第"+i+"个item");
         }
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getActivity());
+        linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
         adapter = new ItemRecycleViewAdapter(datas,getActivity());
         recyclerView.addItemDecoration(new SimpleDividerItemDecoration(getActivity(),1));
         recyclerView.setAdapter(adapter);
+        recyclerView.addOnScrollListener(new EndlessRecyclerOnScrollListener(linearLayoutManager) {
+            @Override
+            public void onLoadMore(int currentPage) {
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        if (count<2) {
+                            count++;
+                            List<String> lists=new ArrayList<String>();
+                            for (int i = 0; i < 10; i++) {
+                                lists.add("加载更多数据 第"+i+"个item");
+                            }
+                            datas.addAll(lists);
+                            adapter.notifyDataSetChanged();
+                        }else{
+                            Toast.makeText(getActivity(),"没有数据了",0).show();
+                        }
+                    }
+                });
+
+            }
+        });
     }
 
     @Override
