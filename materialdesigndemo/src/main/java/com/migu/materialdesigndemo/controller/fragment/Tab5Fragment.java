@@ -2,6 +2,7 @@ package com.migu.materialdesigndemo.controller.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -36,6 +37,9 @@ public class Tab5Fragment extends BaseFragment implements SwipeRefreshLayout.OnR
     private ItemRecycleViewAdapter adapter;
     private LinearLayoutManager linearLayoutManager;
     private int count=0;
+    private boolean isLoading;
+    private Handler handler=new Handler();
+    private boolean isShouDong;
 
     @Nullable
     @Override
@@ -82,7 +86,7 @@ public class Tab5Fragment extends BaseFragment implements SwipeRefreshLayout.OnR
 
     private void initRecycleView() {
         datas = new ArrayList<>();
-        for (int i = 0; i <5 ; i++) {
+        for (int i = 0; i <1 ; i++) {
             datas.add("我是第"+i+"个item");
         }
         linearLayoutManager = new LinearLayoutManager(getActivity());
@@ -90,31 +94,80 @@ public class Tab5Fragment extends BaseFragment implements SwipeRefreshLayout.OnR
         adapter = new ItemRecycleViewAdapter(datas,getActivity());
         recyclerView.addItemDecoration(new SimpleDividerItemDecoration(getActivity(),1));
         recyclerView.setAdapter(adapter);
-        recyclerView.addOnScrollListener(new EndlessRecyclerOnScrollListener(linearLayoutManager) {
-            @Override
-            public void onLoadMore(int currentPage) {
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            Thread.sleep(1000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                        if (count<2) {
-                            count++;
-                            List<String> lists=new ArrayList<String>();
-                            for (int i = 0; i < 10; i++) {
-                                lists.add("加载更多数据 第"+i+"个item");
-                            }
-                            datas.addAll(lists);
-                            adapter.notifyDataSetChanged();
-                        }else{
-                            Toast.makeText(getActivity(),"没有数据了",0).show();
-                        }
-                    }
-                });
+//        recyclerView.addOnScrollListener(new EndlessRecyclerOnScrollListener(linearLayoutManager) {
+//            @Override
+//            public void onLoadMore(int currentPage) {
+//                getActivity().runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        try {
+//                            Thread.sleep(2000);
+//                        } catch (InterruptedException e) {
+//                            e.printStackTrace();
+//                        }
+//                        if (count<2) {
+//                            count++;
+//                            List<String> lists=new ArrayList<String>();
+//                            for (int i = 0; i < 10; i++) {
+//                                lists.add("加载更多数据 第"+i+"个item");
+//                            }
+//                            datas.addAll(lists);
+//                            adapter.notifyDataSetChanged();
+//                        }else{
+//                            Toast.makeText(getActivity(),"没有数据了",0).show();
+//                        }
+//                    }
+//                });
+//
+//            }
+//        });
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
 
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                switch (newState){
+                    case RecyclerView.SCROLL_STATE_DRAGGING:
+                        isShouDong = true;
+                        break;
+                }
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                int lastVisibleItemPosition = linearLayoutManager.findLastVisibleItemPosition();
+                if ((lastVisibleItemPosition+1)==adapter.getItemCount()&&isShouDong){
+                    if (!isLoading){
+                        isLoading=true;
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (count<3) {
+                                    count++;
+                                    List<String> lists=new ArrayList<String>();
+                                    for (int i = 0; i < 2; i++) {
+                                        lists.add("加载更多数据 第"+i+"个item");
+                                    }
+                                    datas.addAll(lists);
+
+                                }else{
+                                    Toast.makeText(getActivity(),"没有数据了",0).show();
+                                    adapter.setHintFooter(true);
+                                }
+                                adapter.notifyDataSetChanged();
+                                isLoading=false;
+                                isShouDong=false;
+                            }
+                        },2000);
+                    }
+                }
+            }
+        });
+        adapter.setOnItemClickListener(new ItemRecycleViewAdapter.OnItemClickListener() {
+            @Override
+            public void OnItemClick(View view, int position) {
+                Toast.makeText(getActivity(),"点击了第"+position+"个cardItem",0).show();
             }
         });
     }
