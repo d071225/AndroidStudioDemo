@@ -22,7 +22,7 @@ public class ItemRecycleViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     private static final int TYPE_NORMAL=1;
     private static final int TYPE_FOOTER=2;
     public OnItemClickListener onItemClickListener;
-    private boolean isHintFooter;
+    private boolean isHintFooter=true;
 
     public boolean isHintFooter() {
         return isHintFooter;

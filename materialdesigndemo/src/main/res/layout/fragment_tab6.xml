@@ -26,10 +26,10 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <com.migu.materialdesigndemo.adapter.MyRecycleView
+        <com.migu.materialdesigndemo.view.RefreshRecyclerView
             android:id="@+id/rv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            ></com.migu.materialdesigndemo.adapter.MyRecycleView>
+            ></com.migu.materialdesigndemo.view.RefreshRecyclerView>
     </android.support.v4.widget.SwipeRefreshLayout>
 </android.support.design.widget.CoordinatorLayout>

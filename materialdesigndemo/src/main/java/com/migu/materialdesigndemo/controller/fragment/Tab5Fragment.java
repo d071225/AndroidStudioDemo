@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.migu.materialdesigndemo.R;
 import com.migu.materialdesigndemo.adapter.ItemRecycleViewAdapter;
+import com.migu.materialdesigndemo.adapter.MyRecycleView;
 import com.migu.materialdesigndemo.view.EndlessRecyclerOnScrollListener;
 import com.migu.materialdesigndemo.view.itemdecoration.SimpleDividerItemDecoration;
 
@@ -31,7 +32,7 @@ public class Tab5Fragment extends BaseFragment implements SwipeRefreshLayout.OnR
      */
     private boolean isPrepared=false;
     private View view;
-    private RecyclerView recyclerView;
+    private MyRecycleView recyclerView;
     private SwipeRefreshLayout swipeRefreshLayout;
     private List<String> datas;
     private ItemRecycleViewAdapter adapter;
@@ -40,6 +41,7 @@ public class Tab5Fragment extends BaseFragment implements SwipeRefreshLayout.OnR
     private boolean isLoading;
     private Handler handler=new Handler();
     private boolean isShouDong;
+    private int pull;
 
     @Nullable
     @Override
@@ -47,8 +49,6 @@ public class Tab5Fragment extends BaseFragment implements SwipeRefreshLayout.OnR
         Log.e("Tab5Fragment","===onCreateView===");
         if (view==null) {
             view = View.inflate(getActivity(), R.layout.fragment_tab5, null);
-//            TextView tv = (TextView) view.findViewById(R.id.tv_content);
-//            tv.setText("Tab5Fragment");
             isPrepared = true;
             initData();
             setlazyLoad();
@@ -67,7 +67,7 @@ public class Tab5Fragment extends BaseFragment implements SwipeRefreshLayout.OnR
     }
 
     private void initFindViewById() {
-        recyclerView = (RecyclerView) view.findViewById(R.id.rv);
+        recyclerView = (MyRecycleView) view.findViewById(R.id.rv);
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.srl);
     }
 
@@ -86,9 +86,9 @@ public class Tab5Fragment extends BaseFragment implements SwipeRefreshLayout.OnR
 
     private void initRecycleView() {
         datas = new ArrayList<>();
-        for (int i = 0; i <1 ; i++) {
-            datas.add("我是第"+i+"个item");
-        }
+//        for (int i = 0; i <1 ; i++) {
+//            datas.add("我是第"+i+"个item");
+//        }
         linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
         adapter = new ItemRecycleViewAdapter(datas,getActivity());
@@ -121,46 +121,81 @@ public class Tab5Fragment extends BaseFragment implements SwipeRefreshLayout.OnR
 //
 //            }
 //        });
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
 
+
+//        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+//
+//            @Override
+//            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+//                super.onScrollStateChanged(recyclerView, newState);
+//                switch (newState){
+//                    case RecyclerView.SCROLL_STATE_DRAGGING:
+//                        break;
+//
+//                }
+//            }
+//
+//            @Override
+//            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+//                super.onScrolled(recyclerView, dx, dy);
+//                int lastVisibleItemPosition = linearLayoutManager.findLastVisibleItemPosition();
+//                Log.e("123","dy===>"+dy+";lastVisibleItemPosition===>"+lastVisibleItemPosition);
+//                if ((lastVisibleItemPosition+1)==adapter.getItemCount()&&dy>0){
+////                    adapter.setHintFooter(false);
+////                    adapter.notifyDataSetChanged();
+//                    if (!isLoading){
+//                        isLoading=true;
+//                        handler.postDelayed(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                if (count<3) {
+//                                    count++;
+//                                    List<String> lists=new ArrayList<String>();
+//                                    for (int i = 0; i < 2; i++) {
+//                                        lists.add("加载更多数据 第"+i+"个item");
+//                                    }
+//                                    datas.addAll(lists);
+//
+//                                }else{
+//                                    Toast.makeText(getActivity(),"没有数据了",0).show();
+//                                    adapter.setHintFooter(true);
+//                                }
+//                                isLoading=false;
+//                                adapter.notifyDataSetChanged();
+//                            }
+//                        },2000);
+//                    }
+//                }
+//            }
+//        });
+
+
+        recyclerView.setOnLoadMoreListener(new MyRecycleView.OnLoadMoreListener() {
             @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-                switch (newState){
-                    case RecyclerView.SCROLL_STATE_DRAGGING:
-                        isShouDong = true;
-                        break;
-                }
-            }
-
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                int lastVisibleItemPosition = linearLayoutManager.findLastVisibleItemPosition();
-                if ((lastVisibleItemPosition+1)==adapter.getItemCount()&&isShouDong){
-                    if (!isLoading){
-                        isLoading=true;
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                if (count<3) {
-                                    count++;
-                                    List<String> lists=new ArrayList<String>();
-                                    for (int i = 0; i < 2; i++) {
-                                        lists.add("加载更多数据 第"+i+"个item");
-                                    }
-                                    datas.addAll(lists);
-
-                                }else{
-                                    Toast.makeText(getActivity(),"没有数据了",0).show();
-                                    adapter.setHintFooter(true);
+            public void onLoadMore(RecyclerView recyclerView) {
+                adapter.setHintFooter(false);
+                adapter.notifyDataSetChanged();
+                if (!isLoading){
+                    isLoading=true;
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (count<3) {
+                                count++;
+                                List<String> lists=new ArrayList<String>();
+                                for (int i = 0; i < 2; i++) {
+                                    lists.add("加载更多数据 第"+i+"个item");
                                 }
-                                adapter.notifyDataSetChanged();
-                                isLoading=false;
-                                isShouDong=false;
+                                datas.addAll(lists);
+
+                            }else{
+                                Toast.makeText(getActivity(),"没有数据了",0).show();
+                                adapter.setHintFooter(true);
                             }
-                        },2000);
-                    }
+                            isLoading=false;
+                            adapter.notifyDataSetChanged();
+                        }
+                    },2000);
                 }
             }
         });
@@ -237,8 +272,14 @@ public class Tab5Fragment extends BaseFragment implements SwipeRefreshLayout.OnR
 
     @Override
     public void onRefresh() {
-        datas.add(0,"下拉刷新的数据");
-        swipeRefreshLayout.setRefreshing(false);
-        adapter.notifyDataSetChanged();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                pull++;
+                datas.add(0,"添加第"+pull+"个下拉刷新的数据");
+                swipeRefreshLayout.setRefreshing(false);
+                adapter.notifyDataSetChanged();
+            }
+        },2000);
     }
 }
