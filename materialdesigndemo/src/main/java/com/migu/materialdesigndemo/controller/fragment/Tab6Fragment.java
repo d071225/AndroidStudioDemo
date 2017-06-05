@@ -4,10 +4,10 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +15,6 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.migu.materialdesigndemo.R;
-import com.migu.materialdesigndemo.adapter.ItemRecycleViewAdapter;
 import com.migu.materialdesigndemo.adapter.MyRecycleViewAdapter;
 import com.migu.materialdesigndemo.view.RefreshRecyclerView;
 import com.migu.materialdesigndemo.view.itemdecoration.SimpleDividerItemDecoration;
@@ -40,6 +39,8 @@ public class Tab6Fragment extends BaseFragment implements SwipeRefreshLayout.OnR
     private MyRecycleViewAdapter adapter;
     private Handler handler=new Handler();
     private int count=0;
+    private Toolbar toolbar;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -65,6 +66,14 @@ public class Tab6Fragment extends BaseFragment implements SwipeRefreshLayout.OnR
 
     private void initFindViewById() {
         recyclerView = (RefreshRecyclerView) view.findViewById(R.id.rv);
+        toolbar = (Toolbar) view.findViewById(R.id.toolbar);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(),"关闭当前页面",0).show();
+            }
+        });
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.srl);
         swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_red_light, android.R.color.holo_blue_light, android.R.color.holo_green_light);
     }

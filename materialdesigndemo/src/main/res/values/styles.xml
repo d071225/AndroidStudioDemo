@@ -9,7 +9,16 @@
     </style>
 
     <style name="TabViewTextSize" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
-        <item name="android:textSize">10sp</item>
+        <item name="android:textSize">20sp</item>
     </style>
+    <style name="MyToolbar" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <item name="android:textColorPrimary">#ff0000</item>
+    </style>
+    <!-- toolbar菜单样式 -->
+    <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <item name="android:textColorPrimary">@android:color/white</item>
+    </style>
+
+
 
 </resources>
